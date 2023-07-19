@@ -10,13 +10,10 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(
-  "mongodb+srv://Parivalavan:whyeveryappneedspassword@cluster0.qg5a0jv.mongodb.net/",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(process.env.API_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const itemsSchema = {
   name: String,
@@ -131,7 +128,7 @@ app.post("/delete", async (req, res) => {
   }
 });
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log("Server started on port 3000");
