@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 mongoose.connect(
-  "mongodb+srv://Parivalavan:whyeveryappneedspassword@cluster0.qg5a0jv.mongodb.net/",
+  process.env.mongo_db_id,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
