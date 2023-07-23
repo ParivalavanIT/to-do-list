@@ -4,20 +4,24 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+const dotenv =require("dotenv");
 
 const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(
-  process.env.mongo_db_id,
-  {
+
+dotenv.config();
+const connectDB = async () => {
+  mongoose.set("strictQuery", true);
+  mongoose.connect(process.env.DB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  }
-);
+  });
 
+  console.log(`MongoDB Connected`);
+};
 const itemsSchema = {
   name: String,
 };
