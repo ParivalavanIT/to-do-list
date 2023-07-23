@@ -15,14 +15,20 @@ dotenv.config();
 
 
 const connectDB = async () => {
-  mongoose.set("strictQuery", true);
-  mongoose.connect(process.env.DB_HOST, {
+  try{
+     mongoose.set("strictQuery", true);
+  await mongoose.connect(process.env.DB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
 
   console.log(`MongoDB Connected`);
+  }
+  catch(err){
+    console.log("Db_notconnected");
+  }
 };
+
 const itemsSchema = {
   name: String,
 };
