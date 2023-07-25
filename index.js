@@ -18,8 +18,11 @@ const connectDB = async () => {
   try{
      mongoose.set("strictQuery", true);
   await mongoose.connect(process.env.DB_HOST, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    usenewurlparser: true,
+    usecreateindex: true,
+    usefindmodify: true,
+    useunifiedtropology: true,
+    urlencoded: true,
   });
 
   console.log(`MongoDB Connected`);
